@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffe8ef">
+  <title>Nuestra historia ❤️</title>
+  <style>
+    :root { --pink:#e8799c; --dark:#713c50; --pale:#fff0f3; --white:#fff; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; font-family:Georgia,serif; color:var(--dark);
+      background:linear-gradient(180deg,#fff0f3,#fff9fa);
+      text-align:center;
+    }
+    header {
+      padding:76px 20px 60px;
+      background:linear-gradient(135deg,#ffb6c8,#ffe0e8);
+    }
+    h1 { font-size:clamp(2rem,7vw,3rem); margin:0 0 12px; }
+    h2 { color:#d65d83; }
+    .subtitle { font-size:1.1rem; }
+    section { padding:42px 18px; max-width:850px; margin:auto; }
+    .card {
+      background:var(--white); border-radius:20px; padding:25px;
+      margin:18px auto; box-shadow:0 5px 20px #d98ba522;
+    }
+    .counter { font-size:clamp(1.5rem,5vw,2rem); font-weight:bold; color:#d65d83; }
+    .gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+    .gallery img {
+      width:100%; height:190px; object-fit:cover; border-radius:15px;
+      background:#ffe0e8;
+    }
+    button {
+      border:0; background:var(--pink); color:white; padding:14px 25px;
+      border-radius:25px; font-size:1rem; cursor:pointer;
+    }
+    button:hover { background:#d65d83; }
+    .letter { display:none; line-height:1.8; margin-top:20px; }
+    .letter.open { display:block; animation:appear .6s ease; }
+    .heart {
+      position:fixed; bottom:-30px; pointer-events:none; z-index:5;
+      animation:float 7s linear forwards;
+    }
+    footer { padding:30px 15px; background:#ffe0e8; }
+    .hint { font-size:.9rem; opacity:.75; }
+    @keyframes float {
+      to { transform:translateY(-110vh) rotate(360deg); opacity:0; }
+    }
+    @keyframes appear {
+      from { opacity:0; transform:translateY(12px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+    @media(max-width:480px) {
+      .gallery img { height:145px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>❤️ Nuestra historia ❤️</h1>
+    <p class="subtitle">Un pequeño lugar para guardar todo lo nuestro.</p>
+  </header>
+
+  <section>
+    <h2>¿Cuánto tiempo llevamos juntos?</h2>
+    <div class="card">
+      <p>Y cada día es uno más contigo.</p>
+      <div class="counter" id="counter">Añade vuestra fecha ❤️</div>
+      <p>Y que sean muchísimos más. 💗</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Nuestros recuerdos 📸</h2>
+    <p>Algunos momentos que nunca queremos olvidar.</p>
+    <div class="gallery">
+      <img src="foto1.jpg" alt="Nuestro recuerdo 1">
+      <img src="foto2.jpg" alt="Nuestro recuerdo 2">
+      <img src="foto3.jpg" alt="Nuestro recuerdo 3">
+      <img src="foto4.jpg" alt="Nuestro recuerdo 4">
+    </div>
+    <p class="hint">Para poner vuestras fotos, subidlas al repositorio y mantened estos nombres: foto1.jpg, foto2.jpg, foto3.jpg y foto4.jpg.</p>
+  </section>
+
+  <section>
+    <h2>Unas palabras para ti 💌</h2>
+    <div class="card">
+      <p>Hay cosas que no se pueden explicar con palabras...</p>
+      <button type="button" onclick="openLetter()">Abrir mi carta ❤️</button>
+      <div class="letter" id="letter">
+        <h3>Para una persona muy especial:</h3>
+        <p>Gracias por cada momento, cada sonrisa y cada recuerdo que hemos creado. Me encanta compartir aventuras contigo.</p>
+        <p>Ojalá nos queden muchísimos momentos por vivir.</p>
+        <h3>Te quiero muchísimo. ❤️</h3>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Nuestras pequeñas cosas ✨</h2>
+    <div class="card">
+      <p>💕 Nuestra canción: [ESCRIBIR AQUÍ]</p>
+      <p>🌹 Nuestro recuerdo favorito: [ESCRIBIR AQUÍ]</p>
+      <p>💗 Nuestra frase: [ESCRIBIR AQUÍ]</p>
+      <p>⭐ Nuestro próximo sueño: [ESCRIBIR AQUÍ]</p>
+    </div>
+  </section>
+
+  <footer>
+    Hecho con cariño para nosotros dos. ❤️
+    <p>Siempre nosotros. ♾️</p>
+  </footer>
+
+  <script>
+    // CAMBIA la fecha por la vuestra, con formato AAAA-MM-DD.
+    // Ejemplo: const fechaInicio = new Date("2025-08-04T00:00:00");
+    const fechaInicio = new Date("2026-01-01T00:00:00");
+
+    function actualizarContador() {
+      const dias = Math.floor((new Date() - fechaInicio) / 86400000);
+      const elemento = document.getElementById("counter");
+      elemento.textContent = dias >= 0
+        ? dias + " días juntos ❤️"
+        : "Nuestra historia está por comenzar";
+    }
+
+    function openLetter() {
+      document.getElementById("letter").classList.toggle("open");
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (15 + Math.random() * 20) + "px";
+      heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+
+    actualizarContador();
+    setInterval(actualizarContador, 60000);
+    setInterval(createHeart, 1200);
+  </script>
+</body>
+</html>
